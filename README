@@ -1,6 +1,14 @@
 Periodically check user reviews on your android app
 in Android Market, and email you if there is new reviews.
 
+What You Need
+-------------
+
+- Unix Server
+- sendmail (command)
+- lxml (python)
+- cron
+
 Setup
 -----
 1. Replace upper-case strings in user-review-notifier.sh with your own.
