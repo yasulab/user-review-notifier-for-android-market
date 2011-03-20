@@ -89,3 +89,11 @@ Result
 シンプルで良いと思うけど、もっと音が大きくないと…by 五月女–2011/03/14
 Works on droidx. No permissions needed.by Leonard–March 13, 2011
 
+
+Usage of sendmail.py
+--------------------
+
+   $ python sendmail.py FILENAME TO_ADDR
+
+The command above read a given file and
+send e-mail its content to a given mail address.
