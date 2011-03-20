@@ -1,5 +1,8 @@
-Periodically check user reviews on your android app
-in Android Market, and email you if there is new reviews.
+user-revire-notifier-for-android-market
+=======================================
+This is a set of scripts that periodically check user reviews
+on your android app in Android Market, and email you if there
+is new reviews you get.
 
 What You Need
 -------------
@@ -9,9 +12,9 @@ What You Need
 - lxml (python)
 - cron
 
-Setup
------
-1. Replace upper-case strings in user-review-notifier.sh with your own.
+How To Setup
+------------
+* 1. Replace upper-case strings in user-review-notifier.sh with your own. ::
 
    #!/bin/sh
    dir="PATH_TO_THIS_DIR"
@@ -35,24 +38,24 @@ Example:
    mv ${dir}latest.data ${dir}last.data
    python ${dir}sendmail.py ${dir}diff.data ${mail}
 
-2. Make sure that your server can type the following commands.
+* 2. Make sure that your server can type the following commands. ::
 
 - $ sendmail
 - $ python
     >  import lxml
 
-3. Check if python scripts run.
+* 3. Check if python scripts run. ::
 
 - $ python user-review-getter.py PACKAGE_NAME
 - $ python sendmail.py FILENAME TO_ADDR
 
-4. Test to run initial shell script.
+* 4. Test to run initial shell script. ::
 
 - $ sh user-review-notifier.sh
 
-5. Check your e-mail box if you got an e-mail.
+* 5. Check your e-mail box if you got an e-mail. ::
 
-6. Setup your cron to run the shell script periodically.
+* 6. Setup your cron to run the shell script periodically. ::
 
 - $ sudo crontab -e
 
@@ -60,22 +63,22 @@ Example:
 # m h  dom mon dow   command
 0,10,20,30,40,50 * * * * /bin/sh /PATH_TO_DIR/user-review-notifier.sh >/dev/null 2>&1
 
-7. Done! You will be able to get an e-mail if there is new reviews.
+* 7. Done! ::
+
+   You will be able to get an e-mail if there is new reviews.
 
 
-
-Usage of user-review-getter.py
-------------------------------
+user-review-getter.py
+---------------------
+* Usage ::
 
      $ python user-review-getter.py PACKAGE_NAME
 
-Example
--------
+* Example ::
 
      $ python user-review-getter.py org.sorarier.whistle
 
-Result
-------
+* Result ::
 
 非常に素晴らしいアプリだと思います。 そして迅速な改善に頭が下がります。 製作者樣、ありがとうございます。by あっきー–2011/03/19
 こまめな更新に、感謝感激by Gaz–2011/03/19
@@ -90,10 +93,26 @@ Result
 Works on droidx. No permissions needed.by Leonard–March 13, 2011
 
 
-Usage of sendmail.py
---------------------
+sendmail.py
+-----------
+* Usage ::
 
    $ python sendmail.py FILENAME TO_ADDR
 
-The command above read a given file and
-send e-mail its content to a given mail address.
+* Description :: 
+
+   The command above read a given file and
+   send e-mail its content to a given mail address.
+
+
+Copyright
+---------
+
+Copyright (c) 2011 Taku Fukushima. All rights reserved.
+
+License
+-------
+
+user-review-notifier-for-android-market is `MIT Lisense <http://www.opensource.org/licenses/mit-license.php>`_
+
+If you'd like to know more detail, check ``COPYING`` in source.
