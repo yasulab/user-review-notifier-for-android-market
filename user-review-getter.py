@@ -30,13 +30,26 @@ def get_reviews(url):
     html_unicode = unicode(html, charset)
     et = etree.fromstring(html_unicode, parser=etree.HTMLParser())
     review_list = []
+    rating_list = []
     for elem in et.xpath("//div[@class='doc-review']"):
-        text =  etree.tostring(elem, method="text", encoding="utf-8")
+        text = etree.tostring(elem, method="text", encoding="utf-8")
         review_list.append(text)
+    for i,elem in enumerate(et.xpath("//span[@class='ratings']")):
+        if i < 1:
+            continue
+        elif i == 1:
+            print "Average " + elem.attrib['title']
+            continue
+        #text = etree.tostring(elem, method="html", encoding="utf-8")
+        rating = elem.attrib['title']
+        rating_list.append(rating)
     if not review_list:
         text = "There are no reviews yet.\n"
         review_list.append(text)
-    return review_list
+    result = []
+    result.append(review_list)
+    result.append(rating_list)
+    return result
                                                                             
 if __name__ == "__main__":
     import sys
@@ -45,11 +58,14 @@ if __name__ == "__main__":
         app_name = sys.argv[1].lower()
         url_ja = create_url(app_name, JAPANESE)
         url_en = create_url(app_name, ENGLISH)
-        review_list = get_reviews(url_ja) + get_reviews(url_en)
+        result_ja = get_reviews(url_ja)
+        result_en = get_reviews(url_en)
+        review_list = result_ja[0] + result_en[0]
+        rating_list = result_ja[1] + result_en[1]
         result = []
-        for r in review_list:
+        for i,r in enumerate(review_list):
             if not r in result:
-                result.append(r)
+                result.append(r + '\t' + rating_list[i].encode('utf8'))
         for r in result:
             print r
             

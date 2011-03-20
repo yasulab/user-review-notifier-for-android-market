@@ -1,0 +1,117 @@
+user-revire-notifier-for-android-market
+=======================================
+This is a set of scripts that periodically check user reviews
+on your android app in Android Market, and email you if there
+is new reviews you get.
+
+What You Need
+-------------
+
+- Unix Server
+- sendmail (command)
+- lxml (python)
+- cron
+
+How To Setup
+------------
+* 1. Replace upper-case strings in user-review-notifier.sh with your own. ::
+
+   #!/bin/sh
+   dir="PATH_TO_THIS_DIR"
+   package="PACKAGE_NAME"
+   mail="YOUR_ADDR@example.com"
+
+   python ${dir}user-review-getter.py ${package} > ${dir}latest.data
+   diff ${dir}latest.data ${dir}last.data > ${dir}diff.data
+   mv ${dir}latest.data ${dir}last.data
+   python ${dir}sendmail.py ${dir}diff.data ${mail}
+
+Example: ::
+
+   #!/bin/sh
+   dir="/home/yasulab/user-review-notifier/"
+   package="org.sorarier.whistle"
+   mail="yasulab@gmail.com"
+
+   python ${dir}user-review-getter.py ${package} > ${dir}latest.data
+   diff ${dir}latest.data ${dir}last.data > ${dir}diff.data
+   mv ${dir}latest.data ${dir}last.data
+   python ${dir}sendmail.py ${dir}diff.data ${mail}
+
+* 2. Make sure that your server can type the following commands. ::
+
+   $ sendmail
+   $ python
+     >  import lxml
+
+* 3. Check if python scripts run. ::
+
+   $ python user-review-getter.py PACKAGE_NAME
+   $ python sendmail.py FILENAME TO_ADDR
+
+* 4. Test to run initial shell script. ::
+
+   $ sh user-review-notifier.sh
+
+* 5. Check if you got an e-mail in the given e-mail address. ::
+
+* 6. Setup your cron to run the shell script periodically. ::
+
+   $ sudo crontab -e
+
+Example: ::
+
+   # m h  dom mon dow   command
+   0,10,20,30,40,50 * * * * /bin/sh /PATH_TO_DIR/user-review-notifier.sh >/dev/null 2>&1
+
+* 7. Done! You will be able to get an e-mail if there is new reviews.
+
+
+user-review-getter.py
+---------------------
+* Usage ::
+
+     $ python user-review-getter.py PACKAGE_NAME
+
+* Example ::
+
+     $ python user-review-getter.py org.sorarier.whistle
+
+ Result ::
+- 
+’Èó’¾ï’¤Ë’ÁÇ’À²’¤é’¤·’¤¤’¥¢’¥×’¥ê’¤À’¤È’»×’¤¤’¤Þ’¤¹’¡£ ’¤½’¤·’¤Æ’¿×’Â®’¤Ê’²þ’Á±’¤Ë’Æ¬’¤¬’²¼’¤¬’¤ê’¤Þ’¤¹’¡£ ’À½’ºî’¼Ô’Üë’¡¢’¤¢’¤ê’¤¬’¤È’¤¦’¤´’¤¶’¤¤’¤Þ’¤¹’¡£by ’¤¢’¤Ã’¤­’¡¼œôòó2011/03/19
+’¤³’¤Þ’¤á’¤Ê’¹¹’¿·’¤Ë’¡¢’´¶’¼Õ’´¶’·ãby Gazœôòó2011/03/19
+’²»’ÎÌ’¼«’Æ°’ºÇ’Âç’¤Ï’¤¤’¤¤’¤ó’¤Ç’¤¹’¤¬’¡¢’¸µ’¡¹’¤Î’²»’ÎÌ’Àß’Äê’¤Ë’Ìá’¤ê’¤Þ’¤»’¤ó’¡£ ’¤³’¤ì’¤À’¤È’º¤’¤ê’¤Þ’¤¹’¡£’²þ’Á±’¤ª’¤Í’¤¬’¤¤’¤·’¤Þ’¤¹’¡£ Xperia 2.1by ’Î¦œôòó2011/03/19
+’¶¯’À©’½ª’Î»’Ìä’Âê’²ò’·è’¡ª’ÂÐ’±þ’¤Î’Áá’¤µ’¤Ë’´¶’¼Õ’¡ªby ’´Ä’¶­IS04œôòó2011/03/18
+’¤Á’¤ã’¤ó’¤È’°Õ’¸«’¤ò’µâ’¤ß’¾å’¤²’È½’ÃÇ’¤·’¤¿’¤Î’¤Á’È¿’±Ç’¤¹’¤ë’À¿’¼Â’¤µ’¤È’¡¢’¤½’¤Î’¿×’Â®’¤Ê’¹Ô’Æ°’ÎÏ’¤Ë’´¶’Éþ’¤·’¤Þ’¤·’¤¿œôó¦’¡£ ’ºÒ’³²’»þ’¤Î’¤ß’¤Ê’¤é’¤º’¡¢’ËÉ’ÈÈ’¾å’¤Ç’¤â’Ìò’¤Ë’Î©’¤Ä’¡£ ...by akiœôòó2011/03/18’¤Á’¤ã’¤ó’¤È’°Õ’¸«’¤ò’µâ’¤ß’¾å’¤²’È½’ÃÇ’¤·’¤¿’¤Î’¤Á’È¿’±Ç’¤¹’¤ë’À¿’¼Â’¤µ’¤È’¡¢’¤½’¤Î’¿×’Â®’¤Ê’¹Ô’Æ°’ÎÏ’¤Ë’´¶’Éþ’¤·’¤Þ’¤·’¤¿œôó¦’¡£ ’ºÒ’³²’»þ’¤Î’¤ß’¤Ê’¤é’¤º’¡¢’ËÉ’ÈÈ’¾å’¤Ç’¤â’Ìò’¤Ë’Î©’¤Ä’¡£ ’¤Ç’¤­’¤¦’¤ë’¤Ê’¤é’¡¢’²»’À¼’¡Ê’Îã’¤¨’¤Ð’¼«’Ê¬’¤Ç’Ï¿’²»’¤·’¤Æ’¤ª’¤¤’¤¿’¤â’¤Î’¤È’¤«’¡Ë’¤Î’Êý’¤¬’¤è’¤ê’Ê¬’¤«’¤ê’¤ä’¤¹’¤¤’¤Î’¤À’¤í’¤¦’¤¬’¡£
+’Â®’¤ä’¤«’¤Ê’²þ’ÎÉ’¡¢’ÂÐ’±þ’¤Ë’Æ¬’¤¬’²¼’¤¬’¤ê’¤Þ’¤¹’¡£by Genœôòó2011/03/17
+’»È’ÍÑ’»þ’¤Ë’Ã¼’Ëö’¤Î’²»’ÎÌ’Àß’Äê’¤ò’ºÇ’Âç’¤Þ’¤Ç’¾å’¤²’¤ë’¤è’¤¦’¤Ë’¤Ï’½Ð’Íè’¤Ê’¤¤’¤Î’¤Ç’¤¹’¤«’¡©by ’¤Þ’¡¼’¤µ’¤óœôòó2011/03/16
+’²»’¤¬’¾®’¤µ’¤¤by ’º»’Ìï’¹áœôòó2011/03/15
+’²»’¤¬’¾®’¤µ’¤¤’¤è’¤Íby ’°½’»Òœôòó2011/03/15
+’¥·’¥ó’¥×’¥ë’¤Ç’ÎÉ’¤¤’¤È’»×’¤¦’¤±’¤É’¡¢’¤â’¤Ã’¤È’²»’¤¬’Âç’¤­’¤¯’¤Ê’¤¤’¤Èœôó¦by ’¸Þ’·î’½÷œôòó2011/03/14
+Works on droidx. No permissions needed.by LeonardœôòóMarch 13, 2011
+
+
+sendmail.py
+-----------
+* Usage ::
+
+   $ python sendmail.py FILENAME TO_ADDR
+
+* Description :: 
+
+   The command above read a given file and
+   send e-mail its content to a given mail address.
+
+
+Copyright
+---------
+
+Copyright (c) 2011 Taku Fukushima. All rights reserved.
+
+License
+-------
+
+user-review-notifier-for-android-market is `MIT Lisense <http://www.opensource.org/licenses/mit-license.php>`_
+
+If you'd like to know more detail, check ``COPYING`` in source.
