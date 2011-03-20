@@ -26,7 +26,7 @@ How To Setup
    mv ${dir}latest.data ${dir}last.data
    python ${dir}sendmail.py ${dir}diff.data ${mail}
 
-Example:
+Example: ::
 
    #!/bin/sh
    dir="/home/yasulab/user-review-notifier/"
@@ -40,32 +40,31 @@ Example:
 
 * 2. Make sure that your server can type the following commands. ::
 
-- $ sendmail
-- $ python
-    >  import lxml
+   $ sendmail
+   $ python
+     >  import lxml
 
 * 3. Check if python scripts run. ::
 
-- $ python user-review-getter.py PACKAGE_NAME
-- $ python sendmail.py FILENAME TO_ADDR
+   $ python user-review-getter.py PACKAGE_NAME
+   $ python sendmail.py FILENAME TO_ADDR
 
 * 4. Test to run initial shell script. ::
 
-- $ sh user-review-notifier.sh
+   $ sh user-review-notifier.sh
 
-* 5. Check your e-mail box if you got an e-mail. ::
+* 5. Check if you got an e-mail in the given e-mail address. ::
 
 * 6. Setup your cron to run the shell script periodically. ::
 
-- $ sudo crontab -e
+   $ sudo crontab -e
 
-Example:
-# m h  dom mon dow   command
-0,10,20,30,40,50 * * * * /bin/sh /PATH_TO_DIR/user-review-notifier.sh >/dev/null 2>&1
+Example: ::
 
-* 7. Done! ::
+   # m h  dom mon dow   command
+   0,10,20,30,40,50 * * * * /bin/sh /PATH_TO_DIR/user-review-notifier.sh >/dev/null 2>&1
 
-   You will be able to get an e-mail if there is new reviews.
+* 7. Done! You will be able to get an e-mail if there is new reviews.
 
 
 user-review-getter.py
@@ -80,18 +79,17 @@ user-review-getter.py
 
 * Result ::
 
-非常に素晴らしいアプリだと思います。 そして迅速な改善に頭が下がります。 製作者樣、ありがとうございます。by あっきー–2011/03/19
-こまめな更新に、感謝感激by Gaz–2011/03/19
-音量自動最大はいいんですが、元々の音量設定に戻りません。 これだと困ります。改善おねがいします。 Xperia 2.1by 陸–2011/03/19
-強制終了問題解決！対応の早さに感謝！by 環境IS04–2011/03/18
-ちゃんと意見を汲み上げ判断したのち反映する誠実さと、その迅速な行動力に感服しました…。 災害時のみならず、防犯上でも役に立つ。 ...by aki–2011/03/18ちゃんと意見を汲み上げ判断したのち反映する誠実さと、その迅速な行動力に感服しました…。 災害時のみならず、防犯上でも役に立つ。 できうるなら、音声（例えば自分で録音しておいたものとか）の方がより分かりやすいのだろうが。
-速やかな改良、対応に頭が下がります。by Gen–2011/03/17
-使用時に端末の音量設定を最大まで上げるようには出来ないのですか？by まーさん–2011/03/16
-音が小さいby 沙弥香–2011/03/15
-音が小さいよねby 綾子–2011/03/15
-シンプルで良いと思うけど、もっと音が大きくないと…by 五月女–2011/03/14
-Works on droidx. No permissions needed.by Leonard–March 13, 2011
-
+   非常に素晴らしいアプリだと思います。 そして迅速な改善に頭が下がります。 製作者樣、ありがとうございます。by あっきー–2011/03/19
+   こまめな更新に、感謝感激by Gaz–2011/03/19
+   音量自動最大はいいんですが、元々の音量設定に戻りません。 これだと困ります。改善おねがいします。 Xperia 2.1by 陸–2011/03/19
+   強制終了問題解決！対応の早さに感謝！by 環境IS04–2011/03/18
+   ちゃんと意見を汲み上げ判断したのち反映する誠実さと、その迅速な行動力に感服しました…。 災害時のみならず、防犯上でも役に立つ。 ...by aki–2011/03/18ちゃんと意見を汲み上げ判断したのち反映する誠実さと、その迅速な行動力に感服しました…。 災害時のみならず、防犯上でも役に立つ。 できうるなら、音声（例えば自分で録音しておいたものとか）の方がより分かりやすいのだろうが。
+   速やかな改良、対応に頭が下がります。by Gen–2011/03/17
+   使用時に端末の音量設定を最大まで上げるようには出来ないのですか？by まーさん–2011/03/16
+   音が小さいよねby 綾子–2011/03/15
+   シンプルで良いと思うけど、もっと音が大きくないと…by 五月女–2011/03/14
+   Works on droidx. No permissions needed.by Leonard–March 13, 2011
+   
 
 sendmail.py
 -----------
