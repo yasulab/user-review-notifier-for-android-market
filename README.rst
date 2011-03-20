@@ -106,7 +106,7 @@ sendmail.py
 Copyright
 ---------
 
-Copyright (c) 2011 Taku Fukushima. All rights reserved.
+Copyright (c) 2011 Yohei YASUKAWA. All rights reserved.
 
 License
 -------
