@@ -121,6 +121,6 @@ Copyright (c) 2011 Yohei YASUKAWA. All rights reserved.
 License
 -------
 
-user-review-notifier-for-android-market is `MIT Lisense <http://www.opensource.org/licenses/mit-license.php>`_
+user-review-notifier-for-android-market is under `MIT License <http://www.opensource.org/licenses/mit-license.php>`_
 
-If you'd like to know more detail, check ``COPYING`` in source.
+If you'd like to know more about the license, check ``COPYING`` in source.
