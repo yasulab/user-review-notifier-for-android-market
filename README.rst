@@ -14,7 +14,9 @@ What You Need
 
 How To Setup
 ------------
-* 1. Replace upper-case strings in user-review-notifier.sh with your own. ::
+* 1. Replace upper-case strings in user-review-notifier.sh with your own. 
+
+Default: ::
 
    #!/bin/sh
    dir="PATH_TO_THIS_DIR"
@@ -38,13 +40,17 @@ Example: ::
    mv ${dir}latest.data ${dir}last.data
    python ${dir}sendmail.py ${dir}diff.data ${mail}
 
-* 2. Make sure that your server can type the following commands. ::
+* 2. Make sure that your server can type the following commands. 
+
+::
 
    $ sendmail
    $ python
      >  import lxml
 
-* 3. Check if python scripts run. ::
+* 3. Check if python scripts run. 
+
+::
 
    $ python user-review-getter.py PACKAGE_NAME
    $ python sendmail.py FILENAME TO_ADDR
