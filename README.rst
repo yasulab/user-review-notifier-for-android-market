@@ -55,13 +55,17 @@ Example: ::
    $ python user-review-getter.py PACKAGE_NAME
    $ python sendmail.py FILENAME TO_ADDR
 
-* 4. Test to run initial shell script. ::
+* 4. Test to run initial shell script. 
+
+::
 
    $ sh user-review-notifier.sh
 
 * 5. Check if you got an e-mail in the given e-mail address. ::
 
-* 6. Setup your cron to run the shell script periodically. ::
+* 6. Setup your cron to run the shell script periodically. 
+
+Type: ::
 
    $ sudo crontab -e
 
